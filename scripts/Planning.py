@@ -3,6 +3,7 @@ import pandas as pd
 from pymongo import MongoClient
 import os
 
+
 def main(file_path):
     if not os.path.isfile(file_path):
         print(f"Erreur : Fichier non trouvé : {file_path}")
@@ -11,7 +12,9 @@ def main(file_path):
     print(f"Traitement du fichier : {file_path}")
 
     # Connexion MongoDB
-    client = MongoClient("mongodb://sagem-mongo:27017/")
+
+mongo_uri = os.getenv("SPRING_DATA_MONGODB_URI", "mongodb://localhost:27017/projets")
+client = MongoClient(mongo_uri)
 
     db = client["projets"]
     collection = db["planning"]

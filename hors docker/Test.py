@@ -39,7 +39,8 @@ decalage_lignes = -4
 # ----------------------------
 # ✅ Connexion MongoDB (local)
 # ----------------------------
-client = MongoClient("mongodb://sagem-mongo:27017/")
+mongo_uri = os.getenv("SPRING_DATA_MONGODB_URI", "mongodb://localhost:27017/projets")
+client = MongoClient(mongo_uri)
 db = client["projets"]
 collection = db["test_quoi_tester"]
 collection.delete_many({})  # Nettoyage de la collection

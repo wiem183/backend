@@ -10,7 +10,8 @@ sheet_meta = "Périmetre + Objectifs Projet"
 file_path = sys.argv[1]
 
 # === Connexion MongoDB ===
-client = MongoClient("mongodb://sagem-mongo:27017/")
+mongo_uri = os.getenv("SPRING_DATA_MONGODB_URI", "mongodb://localhost:27017/projets")
+client = MongoClient(mongo_uri)
 db = client["projets"]
 collection_cms = db["budget_cms"]
 collection_integ = db["budget_integ"]
